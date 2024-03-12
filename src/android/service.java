@@ -29,6 +29,7 @@ public class service extends CordovaPlugin {
 	BT.sendcommand("TEXT 100,300,\"3\",0,1,1,@1\r\n");
 	BT.barcode(100, 100, "128", 100, 1, 0, 3, 3, "123456789");
 	BT.printerfont(100, 250, "3", 0, 1, 1, "987654321");
+	BT.printerfont(100, 250, "3", 0, 1, 1, "<h1>TEST 1234567</h1>");
 	BT.printlabel(2, 1);       	
 	BT.closeport(700);
 	
