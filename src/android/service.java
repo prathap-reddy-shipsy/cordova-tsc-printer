@@ -16,7 +16,7 @@ public class service extends CordovaPlugin {
 	
 	//BT
 	TSCActivity BT = new TSCActivity();
-	BT.openport("00:0C:BF:12:13:C0");
+	BT.openport("34:81:F4:CB:1F:66");
 	BT.sendcommand("SIZE 100 mm, 50 mm\r\n");
 	BT.sendcommand("GAP 2 mm, 0 mm\r\n");
 	BT.sendcommand("SPEED 4\r\n");

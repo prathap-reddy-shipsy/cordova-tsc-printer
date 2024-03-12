@@ -8,7 +8,7 @@
         "android"
       ]
     },
-    "main": "www/tscprintwifi.js",
+    "main": "www/tsc.cordova.sample.service.js",
     "repository": {
       "type": "git",
       "url": "git+https://github.com/prathap-reddy-shipsy/cordova-tsc-printer.git"
