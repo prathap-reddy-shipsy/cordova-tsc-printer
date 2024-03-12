@@ -1,0 +1,37 @@
+{
+    "name": "cordova-tsc-printer",
+    "version": "0.0.1",
+    "description": "Cordova Plugin for TSC Printers",
+    "cordova": {
+      "id": "tsc-cordova",
+      "platforms": [
+        "android"
+      ]
+    },
+    "main": "www/tscprintwifi.js",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/prathap-reddy-shipsy/cordova-tsc-printer.git"
+    },
+    "keywords": [
+      "printer",
+      "tsc",
+      "label",
+      "qr",
+      "barcode",
+      "ecosystem:cordova",
+      "cordova-android"
+    ],
+    "engines": {
+        "cordova": ">=3.0.0"
+    },
+    "author": "Prathap Reddy",
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/prathap-reddy-shipsy/cordova-tsc-printer/issues"
+    },
+    "homepage": "https://github.com/prathap-reddy-shipsy/cordova-tsc-printer#readme",
+    "scripts": {
+      "test": "cordova plugin install cordova-tsc-printer"
+    }
+  }
