@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"        
+        id="tsc-cordova-sample" 
+        version="1.0.0">
+  
+    <!-- metadata -->
+    <name>TSC Cordova Sample</name>
+    <description>TSC Cordova Sample Explaination</description>
+    <license>Apache 2.0</license>
+       
+    <!-- javascript -->
+    <js-module name="service" src="www/tsc.cordova.sample.service.js" >
+        <clobbers target="tsc.cordova.sample.service" />
+    </js-module>
+    
+    <!-- android -->
+    <platform name="android">        
+        <!-- config -->
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="service">
+                <param name="android-package" value="com.tsc.cordova.sample.service"/>
+            </feature>
+        </config-file>        
+        <!-- source -->
+        <source-file src="src/android/service.java" target-dir="src/com/tsc/cordova/sample/service" />
+				<source-file src="src/android/tscsdk.jar" target-dir="libs" />
+    </platform>
+    
+</plugin>
