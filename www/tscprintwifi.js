@@ -9,6 +9,12 @@ tscprintwifi.prototype.print = function(message, address, successCallback, error
   	options.address = address;
     cordova.exec(successCallback, errorCallback, "tscprintwifi", "print", [options]);
 }
+tscprintwifi.prototype.printBTText = function(message, address, successCallback, errorCallback) {
+	var options = {};
+	options.message = message;
+	options.address = address;
+  cordova.exec(successCallback, errorCallback, "tscprintwifi", "printBTText", [options]);
+}
 
 tscprintwifi.prototype.status = function(message, address, successCallback, errorCallback) {
 	var options = {};
