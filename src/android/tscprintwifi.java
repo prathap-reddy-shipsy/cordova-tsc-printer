@@ -52,7 +52,7 @@ public class tscprintwifi extends CordovaPlugin {
 
 	public void printBTText(String printIp, String messageText){
 		try{
-			TscWifiActivity BT = new TscWifiActivity();
+			TSCActivity BT = new TSCActivity();
 			BT.openport(printIp);
 			BT.sendcommand("SIZE 100 mm, 50 mm\r\n");
 			BT.sendcommand("GAP 2 mm, 0 mm\r\n");
