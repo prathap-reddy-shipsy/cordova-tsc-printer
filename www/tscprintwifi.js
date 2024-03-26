@@ -1,19 +1,18 @@
 function tscprintwifi() {}
 
-// Print
-// The function that passes work along to native shells
-// Message is a string
-tscprintwifi.prototype.print = function(message, address, successCallback, errorCallback) {
-  	var options = {};
-  	options.message = message;
-  	options.address = address;
-    cordova.exec(successCallback, errorCallback, "tscprintwifi", "print", [options]);
+tscprintwifi.prototype.connectBT = function(address, successCallback, errorCallback) {
+	var options = {};
+	options.address = address;
+  cordova.exec(successCallback, errorCallback, "tscprintwifi", "connectBT", [options]);
 }
-tscprintwifi.prototype.printBTText = function(message, address, successCallback, errorCallback) {
+tscprintwifi.prototype.printBTText = function(message, successCallback, errorCallback) {
 	var options = {};
 	options.message = message;
-	options.address = address;
   cordova.exec(successCallback, errorCallback, "tscprintwifi", "printBTText", [options]);
+}
+tscprintwifi.prototype.printData = function(successCallback, errorCallback) {
+	var options = {};
+  	cordova.exec(successCallback, errorCallback, "tscprintwifi", "printData", [options]);
 }
 
 tscprintwifi.prototype.status = function(message, address, successCallback, errorCallback) {

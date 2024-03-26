@@ -33,26 +33,17 @@ public class tscprintwifi extends CordovaPlugin {
 	public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
     }
-
-	public void printBmp(String printIp, String path){
+	TSCActivity BT = new TSCActivity();
+	public void printBTText(String messageText){
 		try{
-			TscWifiActivity TscEthernetDll = new TscWifiActivity();
-			TscEthernetDll.openport(printIp, 9100);
-			TscEthernetDll.setup(100, 150, 3, 15, 0, 0, 0);
-			TscEthernetDll.clearbuffer();
-			TscEthernetDll.sendpicture(0, 0, path);
-			Thread.sleep(1000);
-			TscEthernetDll.sendcommand("PRINT 1\r\n");
-			TscEthernetDll.closeport();
-			Toast.makeText(this.cordova.getActivity(), "Printed", Toast.LENGTH_LONG).show();
+			BT.sendcommand("TEXT 100,300,\"3\",0,1,1,@1\r\n");
+			BT.printerfont(100, 250, "3", 0, 1, 1, messageText);
 		} catch(Exception e){
 			Toast.makeText(this.cordova.getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
 		}
 	}
-
-	public void printBTText(String printIp, String messageText){
+	public void connectBT(String printIp){
 		try{
-			TSCActivity BT = new TSCActivity();
 			BT.openport(printIp);
 			BT.sendcommand("SIZE 100 mm, 50 mm\r\n");
 			BT.sendcommand("GAP 2 mm, 0 mm\r\n");
@@ -63,10 +54,13 @@ public class tscprintwifi extends CordovaPlugin {
 			BT.sendcommand("SET TEAR ON\r\n");
 			BT.sendcommand("SET COUNTER @1 1\r\n");
 			BT.sendcommand("@1 = \"0001\"\r\n");
-			BT.sendcommand("TEXT 100,300,\"3\",0,1,1,@1\r\n");
-			BT.barcode(100, 100, "128", 100, 1, 0, 3, 3, "123456789");
-			BT.printerfont(100, 250, "3", 0, 1, 1, "987654321");
-			BT.printlabel(2, 1);       	
+		} catch(Exception e){
+			Toast.makeText(this.cordova.getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
+		}
+	}
+	public void printData(){
+		try{
+			BT.printlabel(1, 1);
 			BT.closeport(700);
 			Toast.makeText(this.cordova.getActivity(), "Printed", Toast.LENGTH_LONG).show();
 		} catch(Exception e){
@@ -76,25 +70,30 @@ public class tscprintwifi extends CordovaPlugin {
 
 	@Override
 	public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) {
-		String message;
-		String address;
+		String message = null;
+		String address = null;
 		try {
             JSONObject options = args.getJSONObject(0);
-            message = options.getString("message");
-            address = options.getString("address");
+            if (options.has("message")) {
+                message = options.getString("message");
+            }
+            if (options.has("address")) {
+                address = options.getString("address");
+            }
         } catch (JSONException e) {
             callbackContext.error("Error encountered: " + e.getMessage());
             return false;
         }
 		if(action.equals("printBTText")) {
-			printBTText(address, message);
-		} else if(action.equals("print")) {
-			printBmp(address, message);
+			printBTText(message);
+		} else if(action.equals("printData")) {
+			printData();
+		} else if(action.equals("connectBT")) {
+			connectBT(address);
 		} else if(action.equals("status")) {
 			TscWifiActivity TscEthernetDll = new TscWifiActivity();
 			TscEthernetDll.openport(address, 9100);
-			//Note: 00 = Idle, 01 = Head Opened
-			String status = TscEthernetDll.printerstatus(); //printerstatus(int timeout)
+			String status = TscEthernetDll.printerstatus();
 			String msg = "";
 			
 			if(status == "00"){
@@ -111,13 +110,10 @@ public class tscprintwifi extends CordovaPlugin {
 			}
 
 			Toast.makeText(cordova.getActivity(), "Status data : " + msg, Toast.LENGTH_LONG).show();
-			//TscEthernetDll.closeport(5000);
-			
 		} else {
             callbackContext.error("\"" + action + "\" is not a recognized action.");
             return false;
         }
-		// Send a positive result to the callbackContext
 		PluginResult pluginResult = new PluginResult(PluginResult.Status.OK);
 		callbackContext.sendPluginResult(pluginResult);
 		return true;
