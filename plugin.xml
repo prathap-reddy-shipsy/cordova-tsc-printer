@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-plugin-tscprinter" version="1.0.0">
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-tsc-printer" version="1.0.0">
     <name>Cordova Plugin TSC Printer</name>
     <description>TSC Printer Cordova Plugin</description>
     <license>Apache 2.0</license>

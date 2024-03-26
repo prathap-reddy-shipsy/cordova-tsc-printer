@@ -1,9 +1,3 @@
-// methods
-//exports.show = function (message) {
-    //cordova.exec(successCallback, errorCallback, "service", "show", [message]);
-//};
-
-// based on https://www.outsystems.com/blog/posts/how-to-create-a-cordova-plugin-from-scratch/
 function tscprintwifi() {}
 
 // Print
@@ -14,7 +8,6 @@ tscprintwifi.prototype.print = function(message, address, successCallback, error
   	options.message = message;
   	options.address = address;
     cordova.exec(successCallback, errorCallback, "tscprintwifi", "print", [options]);
-  	//cordova.exec(successCallback, errorCallback, 'zebraprintwifi', 'print', [options]);
 }
 
 tscprintwifi.prototype.status = function(message, address, successCallback, errorCallback) {
