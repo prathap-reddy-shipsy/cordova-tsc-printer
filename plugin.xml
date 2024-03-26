@@ -1,30 +1,21 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"        
-        id="tsc-cordova-sample" 
-        version="1.0.0">
-  
-    <!-- metadata -->
-    <name>TSC Cordova Sample</name>
-    <description>TSC Cordova Sample Explaination</description>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-plugin-tscprinter" version="1.0.0">
+    <name>Cordova Plugin TSC Printer</name>
+    <description>TSC Printer Cordova Plugin</description>
     <license>Apache 2.0</license>
-       
-    <!-- javascript -->
-    <js-module name="service" src="www/tsc.cordova.sample.service.js" >
-        <clobbers target="tsc.cordova.sample.service" />
+    <engines>
+        <engine name="cordova" version=">=3.0.0"/>
+    </engines>
+    <js-module src="www/tscprintwifi.js" name="tscprintwifi" >
+        <clobbers target="window.plugins.tscprintwifi" />
     </js-module>
-    
-    <!-- android -->
-    <platform name="android">        
-        <!-- config -->
+    <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="service">
-                <param name="android-package" value="com.tsc.cordova.sample.service"/>
+            <feature name="tscprintwifi">
+                <param name="android-package" value="com.justapplications.cordova.plugin.tscprintwifi"/>
             </feature>
-        </config-file>        
-        <!-- source -->
-        <source-file src="src/android/service.java" target-dir="src/com/tsc/cordova/sample/service" />
-				<source-file src="src/android/tscsdk.jar" target-dir="libs" />
+        </config-file>
+        <source-file src="src/android/tscprintwifi.java" target-dir="src/com/justapplications/cordova/plugin" />
+		<source-file src="src/android/tscsdk.jar" target-dir="libs" />
     </platform>
-    
 </plugin>

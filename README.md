@@ -1,1 +1,2 @@
-## Cordova TSC Printer
+# cordova-plugin-tscprinter
+Cordova TSC Printer Plugin
